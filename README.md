@@ -1,5 +1,7 @@
 # Interval builder and finder
 
+[![Test Status](https://github.com/PaperNick/music-theory-interval-tools/actions/workflows/main.yml/badge.svg)](https://github.com/PaperNick/music-theory-interval-tools/actions)
+
 This package aims to serve as a base that can be used in music theory applications which rely on interval building and finding.
 
 By using this module, you can build an interval starting from any note, in any direction (ascending, descending). You can also find the interval between two arbitrary notes in any direction (ascending and descending).
