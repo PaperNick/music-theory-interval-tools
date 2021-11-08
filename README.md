@@ -58,6 +58,14 @@ calc.find_interval_descending(Note.A, Note.D_FLAT)
 <Interval.MINOR_6TH: (8, 'm6', 'minor 6th')>
 ```
 
+## Interval building trainer
+
+If you want to practice building intervals, start the CLI trainer:
+
+```
+python -m src.trainer
+```
+
 ## Testing
 
 Execute the unit tests:
