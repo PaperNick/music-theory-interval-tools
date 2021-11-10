@@ -5,6 +5,9 @@ from src.enums import Interval, Note
 
 class IntervalCalculator:
     def add_interval_above(self, note: Note, interval: Interval) -> Note:
+        if interval == Interval.OCTAVE:
+            return note
+
         interval_note_num = (note.number + interval.half_steps) % 12
         if interval_note_num == 0:
             interval_note_num += 12
@@ -20,6 +23,9 @@ class IntervalCalculator:
 
 
     def subtract_interval_below(self, note: Note, interval: Interval) -> Note:
+        if interval == Interval.OCTAVE:
+            return note
+
         interval_note_num = note.number - interval.half_steps
         if interval_note_num <= 0:
             interval_note_num += 12
