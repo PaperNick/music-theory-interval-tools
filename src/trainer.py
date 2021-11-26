@@ -48,7 +48,7 @@ def main() -> None:
         guessed_note = None
         while True:
             try:
-                guess = input().strip()
+                guess = input().strip().replace('3', '#')
                 guessed_note = Note.from_name(guess)
                 break
             except ValueError:
