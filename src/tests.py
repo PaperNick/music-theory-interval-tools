@@ -25,6 +25,11 @@ class TestIntervalCalculatorBuildingAbove(TestCase):
         note = calc.add_interval_above(Note.B_FLAT, Interval.MAJOR_3RD)
         self.assertEqual(note, Note.D)
 
+    def test_5th_above_a_flat_should_equal_e_flat(self):
+        calc = IntervalCalculator()
+        note = calc.add_interval_above(Note.A_FLAT, Interval.PERFECT_5TH)
+        self.assertEqual(note, Note.E_FLAT)
+
 
 class TestIntervalCalculatorBuildingBelow(TestCase):
     def test_major_3rd_below_c_should_equal_a_flat(self):
@@ -46,6 +51,11 @@ class TestIntervalCalculatorBuildingBelow(TestCase):
         calc = IntervalCalculator()
         note = calc.subtract_interval_below(Note.D, Interval.MAJOR_7TH)
         self.assertEqual(note, Note.E_FLAT)
+
+    def test_4th_below_d_flat_should_equal_a_flat(self):
+        calc = IntervalCalculator()
+        note = calc.subtract_interval_below(Note.D_FLAT, Interval.PERFECT_4TH)
+        self.assertEqual(note, Note.A_FLAT)
 
 
 class TestIntervalCalculatorFindingIntervalAscending(TestCase):
