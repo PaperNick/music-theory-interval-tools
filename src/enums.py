@@ -25,12 +25,18 @@ class Interval(Enum):
         self.short_name = short_name
         self.full_name = full_name
 
-    def is_minor_interval(self):
+    def is_minor(self) -> bool:
         return self in [
             self.MINOR_2ND,
             self.MINOR_3RD,
             self.MINOR_6TH,
             self.MINOR_7TH,
+        ]
+
+    def is_perfect(self) -> bool:
+        return self in [
+            self.PERFECT_4TH,
+            self.PERFECT_5TH,
         ]
 
     @classmethod
@@ -70,6 +76,12 @@ class Note(Enum):
     def __init__(self, _, number) -> None:
         self.display_name = self.name.replace('_SHARP', '#').replace('_FLAT', 'b')
         self.number = number
+
+    def is_sharp(self) -> bool:
+        return '#' in self.display_name
+
+    def is_flat(self) -> bool:
+        return 'b' in self.display_name
 
     @classmethod
     def from_name(cls, note_name: str) -> 'Note':
