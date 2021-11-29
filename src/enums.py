@@ -26,18 +26,18 @@ class Interval(Enum):
         self.full_name = full_name
 
     def is_minor(self) -> bool:
-        return self in [
+        return self in (
             self.MINOR_2ND,
             self.MINOR_3RD,
             self.MINOR_6TH,
             self.MINOR_7TH,
-        ]
+        )
 
     def is_perfect(self) -> bool:
-        return self in [
+        return self in (
             self.PERFECT_4TH,
             self.PERFECT_5TH,
-        ]
+        )
 
     @classmethod
     def from_half_steps(cls, half_steps: int) -> 'Interval':
