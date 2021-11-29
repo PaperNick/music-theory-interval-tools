@@ -37,6 +37,7 @@ class Interval(Enum):
         return self in (
             self.PERFECT_4TH,
             self.PERFECT_5TH,
+            self.OCTAVE,
         )
 
     @classmethod
