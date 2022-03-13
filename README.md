@@ -66,6 +66,12 @@ If you want to practice building intervals, start the CLI trainer:
 python -m src.trainer
 ```
 
+Run in auto-answer mode:
+
+```
+python -m src.trainer -a
+```
+
 ## Testing
 
 Execute the unit tests:
