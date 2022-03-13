@@ -1,3 +1,4 @@
+import argparse
 import random
 from signal import signal, SIGINT
 
@@ -29,7 +30,35 @@ class ColorText:
         return f'{cls.RED}{msg}{cls.END_COLOR}'
 
 
+def parse_arguments() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description='A CLI trainer to practice interval building',
+    )
+    parser.add_argument(
+        '-a',
+        '--auto-answer',
+        action='store_true',
+        help=(
+            'Show the correct answer regardless of the given input. '
+            'Press "Enter" to reveal the answer'
+        ),
+    )
+
+    return parser.parse_args()
+
+
+def prompt_answer() -> Note:
+    while True:
+        try:
+            guess = input().strip().replace('3', '#')
+            guessed_note = Note.from_name(guess)
+            return guessed_note
+        except ValueError:
+            print('Invalid note name. Please try again: ', end='')
+
+
 def main() -> None:
+    args = parse_arguments()
     calc = IntervalCalculator()
 
     directions = [
@@ -44,21 +73,17 @@ def main() -> None:
         direction, clarification, answer_func = random.choice(directions)
 
         print(f'Which note is a {interval.full_name} {direction} {note.display_name}? ({clarification}) ', end='')
-
-        guessed_note = None
-        while True:
-            try:
-                guess = input().strip().replace('3', '#')
-                guessed_note = Note.from_name(guess)
-                break
-            except ValueError:
-                print('Invalid note name. Please try again: ', end='')
-
         actual_note: Note = answer_func(note, interval)
-        if guessed_note == actual_note:
-            print(ColorText.green('Correct!'))
+
+        if args.auto_answer:
+            input()
+            print(f'The correct answer is: {actual_note.display_name}')
         else:
-            print(f'{ColorText.red("Incorrect.")} The correct answer is: {actual_note.display_name}')
+            guessed_note = prompt_answer()
+            if guessed_note == actual_note:
+                print(ColorText.green('Correct!'))
+            else:
+                print(f'{ColorText.red("Incorrect.")} The correct answer is: {actual_note.display_name}')
 
         next_note = actual_note
 
