@@ -45,6 +45,10 @@ class IntervalCalculator:
         if interval.is_minor():
             return interval_note[1]
 
+        # Given Gb, count up a major 3rd. Should return Bb, not A#
+        if note.is_flat() and interval.is_major():
+            return interval_note[1]
+
         return interval_note[0]
 
 
@@ -67,6 +71,10 @@ class IntervalCalculator:
         # Note.from_number() will always return in this order - [C#, Db]
         # Details: Count down a 5th from A and subtract a half-step = A -> D -> C#
         if interval.is_minor():
+            return interval_note[0]
+
+        # Given A#, count down a major 3rd. Should return F#, not Gb
+        if note.is_sharp() and interval.is_major():
             return interval_note[0]
 
         return interval_note[1]

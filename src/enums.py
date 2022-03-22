@@ -25,6 +25,14 @@ class Interval(Enum):
         self.short_name = short_name
         self.full_name = full_name
 
+    def is_major(self) -> bool:
+        return self in (
+            self.MAJOR_2ND,
+            self.MAJOR_3RD,
+            self.MAJOR_6TH,
+            self.MAJOR_7TH,
+        )
+
     def is_minor(self) -> bool:
         return self in (
             self.MINOR_2ND,

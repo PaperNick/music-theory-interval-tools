@@ -30,6 +30,21 @@ class TestIntervalCalculatorBuildingAbove(TestCase):
         note = calc.add_interval_above(Note.A_FLAT, Interval.PERFECT_5TH)
         self.assertEqual(note, Note.E_FLAT)
 
+    def test_major_2nd_above_g_flat_should_equal_a_flat(self):
+        calc = IntervalCalculator()
+        note = calc.add_interval_above(Note.G_FLAT, Interval.MAJOR_2ND)
+        self.assertEqual(note, Note.A_FLAT)
+
+    def test_major_3rd_above_g_flat_should_equal_b_flat(self):
+        calc = IntervalCalculator()
+        note = calc.add_interval_above(Note.G_FLAT, Interval.MAJOR_3RD)
+        self.assertEqual(note, Note.B_FLAT)
+
+    def test_major_6th_above_g_flat_should_equal_e_flat(self):
+        calc = IntervalCalculator()
+        note = calc.add_interval_above(Note.G_FLAT, Interval.MAJOR_6TH)
+        self.assertEqual(note, Note.E_FLAT)
+
 
 class TestIntervalCalculatorBuildingBelow(TestCase):
     def test_major_3rd_below_c_should_equal_a_flat(self):
@@ -56,6 +71,21 @@ class TestIntervalCalculatorBuildingBelow(TestCase):
         calc = IntervalCalculator()
         note = calc.subtract_interval_below(Note.D_FLAT, Interval.PERFECT_4TH)
         self.assertEqual(note, Note.A_FLAT)
+
+    def test_major_2nd_below_a_sharp_should_equal_g_sharp(self):
+        calc = IntervalCalculator()
+        note = calc.subtract_interval_below(Note.A_SHARP, Interval.MAJOR_2ND)
+        self.assertEqual(note, Note.G_SHARP)
+
+    def test_major_3rd_below_a_sharp_should_equal_f_sharp(self):
+        calc = IntervalCalculator()
+        note = calc.subtract_interval_below(Note.A_SHARP, Interval.MAJOR_3RD)
+        self.assertEqual(note, Note.F_SHARP)
+
+    def test_major_6th_below_a_sharp_should_equal_c_sharp(self):
+        calc = IntervalCalculator()
+        note = calc.subtract_interval_below(Note.A_SHARP, Interval.MAJOR_6TH)
+        self.assertEqual(note, Note.C_SHARP)
 
 
 class TestIntervalCalculatorFindingIntervalAscending(TestCase):
