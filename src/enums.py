@@ -57,6 +57,28 @@ class Interval(Enum):
         raise ValueError(f'Interval with {half_steps} is not valid.')
 
 
+class NoteValue:
+    """
+    Helper class to manage Note.from_number() results.
+    Possible input values: [D], [F], [G#, Ab], [D#, Eb], etc...
+    The first note will always be sharp, the second will always be flat.
+    """
+    def __init__(self, note: List['Note']):
+        self.note = note
+
+    def value(self):
+        return self.note[0]
+
+    def sharp_value(self):
+        return self.note[0]
+
+    def flat_value(self):
+        try:
+            return self.note[1]
+        except IndexError:
+            return self.note[0]
+
+
 class Note(Enum):
     """
     In music, two note names can represent the same pitch.
@@ -102,10 +124,10 @@ class Note(Enum):
         raise ValueError(f'Cannot find note with name: {note_name}')
 
     @classmethod
-    def from_number(cls, note_number: int) -> List['Note']:
+    def from_number(cls, note_number: int) -> NoteValue:
         """
         If a "note_number" resolves to 2 note names,
         it will always return them in this order:
         [G#, Ab], [D#, Eb], etc...
         """
-        return [note for note in Note if note.number == note_number]
+        return NoteValue([note for note in Note if note.number == note_number])
